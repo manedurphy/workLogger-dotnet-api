@@ -70,7 +70,7 @@ namespace workLogger.Controllers
       var existingTask = _repository.GetById(id);
       if (existingTask == null)
       {
-        return BadRequest("Task with this Project Number already exists");
+        return NotFound("Task with this Project Number does not exist");
       }
 
       var existingUser = _repository.UserExists(taskUpdateDto.UserId);

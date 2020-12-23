@@ -28,7 +28,7 @@ namespace workLogger.Controllers
 
       if (user == null)
       {
-        return NotFound();
+        return NotFound("User could not be found");
       }
 
       return Ok(_mapper.Map<UserReadDto>(user));
@@ -73,7 +73,7 @@ namespace workLogger.Controllers
       var user = _repository.GetById(id);
       if (user == null)
       {
-        return NotFound();
+        return NotFound("User could not be found");
       }
 
       _mapper.Map(userUpdateDto, user);
