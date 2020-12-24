@@ -49,7 +49,6 @@ namespace workLogger.Controllers
       TaskValidator validator = new TaskValidator();
 
       ValidationResult result = validator.Validate(taskCreateDto);
-
       if (!result.IsValid)
       {
         return BadRequest(result.Errors[0].ErrorMessage);
