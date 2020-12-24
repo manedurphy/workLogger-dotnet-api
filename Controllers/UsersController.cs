@@ -44,7 +44,7 @@ namespace workLogger.Controllers
     }
 
     [HttpPost]
-    public ActionResult<UserReadDto> Add(User userCreateDto)
+    public ActionResult<UserReadDto> Add(UserCreateDto userCreateDto)
     {
       UserValidator validator = new UserValidator();
 

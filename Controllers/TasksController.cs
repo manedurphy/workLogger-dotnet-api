@@ -4,6 +4,8 @@ using workLogger.Data;
 using workLogger.DTOs;
 using workLogger.Models;
 using AutoMapper;
+using workLogger.Validation;
+using FluentValidation.Results;
 
 namespace workLogger.Controllers
 {
@@ -44,6 +46,15 @@ namespace workLogger.Controllers
     [HttpPost]
     public ActionResult<TaskReadDto> Add(TaskCreateDto taskCreateDto)
     {
+      TaskValidator validator = new TaskValidator();
+
+      ValidationResult result = validator.Validate(taskCreateDto);
+
+      if (!result.IsValid)
+      {
+        return BadRequest(result.Errors[0].ErrorMessage);
+      }
+
       var existingTask = _repository.TaskExists(taskCreateDto.ProjectNumber);
       if (existingTask)
       {
@@ -53,7 +64,7 @@ namespace workLogger.Controllers
       var existingUser = _repository.UserExists(taskCreateDto.UserId);
       if (!existingUser)
       {
-        return NotFound("User not found");
+        return NotFound(HttpResponses.UserResponses.UserNotFound);
       }
 
       var task = _mapper.Map<Task>(taskCreateDto);

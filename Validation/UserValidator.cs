@@ -1,11 +1,9 @@
-using System;
 using FluentValidation;
-using FluentValidation.Results;
-using workLogger.Models;
+using workLogger.DTOs;
 
 namespace workLogger.Validation
 {
-  public class UserValidator : AbstractValidator<User>
+  public class UserValidator : AbstractValidator<UserSendDto>
   {
     public UserValidator()
     {
