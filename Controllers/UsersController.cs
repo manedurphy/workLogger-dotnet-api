@@ -19,6 +19,7 @@ namespace workLogger.Controllers
     {
       _repository = repository;
       _mapper = mapper;
+
     }
 
     [HttpGet("{id}")]
@@ -28,7 +29,7 @@ namespace workLogger.Controllers
 
       if (user == null)
       {
-        return NotFound("User could not be found");
+        return NotFound(HttpResponses.UserResponses.UserNotFound);
       }
 
       return Ok(_mapper.Map<UserReadDto>(user));
@@ -56,7 +57,7 @@ namespace workLogger.Controllers
       var userExists = _repository.UserExists(userCreateDto.Email);
       if (userExists)
       {
-        return BadRequest("User with that email already exists");
+        return BadRequest(HttpResponses.UserResponses.UserExists);
       }
 
       var newUser = _mapper.Map<User>(userCreateDto);
@@ -73,7 +74,7 @@ namespace workLogger.Controllers
       var user = _repository.GetById(id);
       if (user == null)
       {
-        return NotFound("User could not be found");
+        return NotFound(HttpResponses.UserResponses.UserNotFound);
       }
 
       _mapper.Map(userUpdateDto, user);
@@ -88,7 +89,7 @@ namespace workLogger.Controllers
       var user = _repository.GetById(id);
       if (user == null)
       {
-        return NotFound("User could not be found");
+        return NotFound(HttpResponses.UserResponses.UserNotFound);
       }
 
       _repository.Delete(user);

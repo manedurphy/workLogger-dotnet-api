@@ -47,7 +47,7 @@ namespace workLogger.Controllers
       var existingTask = _repository.TaskExists(taskCreateDto.ProjectNumber);
       if (existingTask)
       {
-        return BadRequest("Task with this Project Number already exists");
+        return BadRequest(HttpResponses.TaskResponses.TaskExists);
       }
 
       var existingUser = _repository.UserExists(taskCreateDto.UserId);
@@ -70,13 +70,13 @@ namespace workLogger.Controllers
       var existingTask = _repository.GetById(id);
       if (existingTask == null)
       {
-        return NotFound("Task with this Project Number does not exist");
+        return NotFound(HttpResponses.TaskResponses.TaskExists);
       }
 
       var existingUser = _repository.UserExists(taskUpdateDto.UserId);
       if (!existingUser)
       {
-        return NotFound("User not found");
+        return NotFound(HttpResponses.UserResponses.UserNotFound);
       }
 
       _mapper.Map(taskUpdateDto, existingTask);
@@ -91,7 +91,7 @@ namespace workLogger.Controllers
       var task = _repository.GetById(id);
       if (task == null)
       {
-        return NotFound("Task could not be found");
+        return NotFound(HttpResponses.TaskResponses.TaskNotFound);
       }
 
       _repository.Delete(task);
