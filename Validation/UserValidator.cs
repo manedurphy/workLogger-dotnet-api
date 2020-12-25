@@ -7,10 +7,10 @@ namespace workLogger.Validation
   {
     public UserValidator()
     {
-      RuleFor(user => user.FirstName).NotEmpty().WithMessage("First name is required");
-      RuleFor(user => user.LastName).NotEmpty().WithMessage("Last name is required");
-      RuleFor(user => user.Email).EmailAddress().WithMessage("Invalid email address");
-      RuleFor(user => user.Password).NotEmpty().MinimumLength(6).WithMessage("Invalid password. Please make sure you have enough characters.");
+      RuleFor(user => user.FirstName).NotEmpty().WithMessage(ValidationMessages.UserValidationMessages.FirstNameMessage);
+      RuleFor(user => user.LastName).NotEmpty().WithMessage(ValidationMessages.UserValidationMessages.LastNameMessage);
+      RuleFor(user => user.Email).EmailAddress().WithMessage(ValidationMessages.UserValidationMessages.EmailMessage);
+      RuleFor(user => user.Password).NotEmpty().MinimumLength(6).WithMessage(ValidationMessages.UserValidationMessages.PasswordMessage);
     }
   }
 }

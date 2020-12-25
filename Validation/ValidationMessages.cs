@@ -14,5 +14,14 @@ namespace workLogger.Validation
       public const string HoursBimMessage = "Hours required by BIM must be greater than or equal to 0";
       public const string UserIdMessage = "Please enter the Id of the user associated with this task";
     }
+
+    public static class UserValidationMessages
+    {
+      public const string FirstNameMessage = "First name is required";
+      public const string LastNameMessage = "Last name is required";
+      public const string EmailMessage = "Invalid email address";
+
+      public const string PasswordMessage = "Invalid password. Please make sure you have enough characters.";
+    }
   }
 }
