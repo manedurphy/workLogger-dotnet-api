@@ -38,7 +38,7 @@ DockerHub account for later use in deployment.
 
 TLDR: Two docker containers set. One for a MySQL database and the other for the API.
 
-# Deployment (an absolute headache)
+# Deployment
 Deployment of this application was done on an EC2 instance through AWS (free tier of course). Through the terminal, I accessed the EC2 instance via SSH and first
 installed Docker on the machine:
   1. sudo yum update -y
